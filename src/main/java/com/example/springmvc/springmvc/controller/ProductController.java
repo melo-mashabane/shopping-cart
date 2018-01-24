@@ -52,4 +52,13 @@ public class ProductController {
         return "edit";
     }
 
+    @RequestMapping(path = "/products/delete/{id}", method = RequestMethod.GET)
+    public String deleteProduct(@PathVariable(name = "id") String id){
+        productRepository.delete(id);
+        return "redirect:/products/";
+
+    }
+
+
+
 }
