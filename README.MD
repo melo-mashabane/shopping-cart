@@ -1,4 +1,4 @@
-SpringBootMVC mini project.
+<h2>SpringBootMVC mini project<h2>
 
 Implemenetd a create, read, update and delete from UI.
 
