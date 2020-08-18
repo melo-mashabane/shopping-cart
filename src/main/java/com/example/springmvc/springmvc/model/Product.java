@@ -1,5 +1,6 @@
 package com.example.springmvc.springmvc.model;
 
+import com.example.springmvc.springmvc.MyInterface;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -12,7 +13,7 @@ import javax.persistence.Id;
  */
 
 @Entity
-public class Product {
+public class Product implements MyInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
@@ -25,6 +26,9 @@ public class Product {
     private Double price;
 
     public Product() {
+    }
+
+    public Product(Object product) {
     }
 
 

@@ -40,5 +40,14 @@ public class DataLoader implements CommandLineRunner {
         product2.setPrice(2.99);
 
         productRepository.save(product2);
+
+        Product product3 = new Product();
+        product3.setName("Almond Bar");
+        product3.setDescription("Almond Bar with chocolate nad honey");
+        product3.setType("CANDIES");
+        product3.setCategory("BARS");
+        product3.setPrice(2.99);
+
+        productRepository.save(product3);
     }
 }
