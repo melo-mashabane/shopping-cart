@@ -51,8 +51,9 @@ public class ProductController {
 
     @RequestMapping(path = "/products/total", method = RequestMethod.GET)
     public String getTotal(Model model){
-        model.addAttribute("productsTotal", productRepository.findAll());
-        return "redirect:/products/";
+        Double basketValue = productService.addTotal(productRepository.findAll());
+        model.addAttribute("name", basketValue);
+        return "result";
     }
 
     @RequestMapping(path = "products", method = RequestMethod.POST)
@@ -63,7 +64,8 @@ public class ProductController {
 
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public String getAllProducts(Model model){
-        model.addAttribute("products", productRepository.findAll());
+        List<Product> v = productRepository.findAll();
+        model.addAttribute("products", v);
         return "products";
     }
 
