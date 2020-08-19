@@ -2,6 +2,7 @@ package com.example.springmvc.springmvc.controller;
 
 import com.example.springmvc.springmvc.Service.ProductService;
 import com.example.springmvc.springmvc.model.Product;
+import com.example.springmvc.springmvc.model.Receipt;
 import com.example.springmvc.springmvc.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
-
-/**
- * Created by mpumelelomashabane on 15/01/2018.
- */
 
 @Controller
 public class ProductController {
@@ -37,12 +34,6 @@ public class ProductController {
         return "index";
     }
 
-//    @RequestMapping(path = "/products/add", method = RequestMethod.GET)
-//    public String createProdct(Model model){
-//     model.addAttribute("product", new Product());
-//     return "edit";
-//    }
-
     @RequestMapping(path = "/products/add", method = RequestMethod.GET)
     public String createProduct(Model model){
         productService.addItem(model);
@@ -50,9 +41,13 @@ public class ProductController {
     }
 
     @RequestMapping(path = "/products/total", method = RequestMethod.GET)
-    public String getTotal(Model model){
+    public String getReceipt(Model model){
         Double basketValue = productService.addTotal(productRepository.findAll());
+        List<Product> itemsInBasket = productRepository.findAll();
+        String purchaseDateAndTime = productService.getPurchaseDateAndTime();
         model.addAttribute("price", basketValue);
+        model.addAttribute("itemsInBasket", itemsInBasket);
+        model.addAttribute("purchaseDateAndTime", purchaseDateAndTime);
         return "itemisedReceipt";
     }
 
@@ -64,8 +59,8 @@ public class ProductController {
 
     @RequestMapping(path = "/products", method = RequestMethod.GET)
     public String getAllProducts(Model model){
-        List<Product> v = productRepository.findAll();
-        model.addAttribute("products", v);
+        List<Product> allProducts = productRepository.findAll();
+        model.addAttribute("products", allProducts);
         return "products";
     }
 

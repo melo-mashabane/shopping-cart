@@ -5,14 +5,23 @@ import java.util.List;
 
 public class Receipt {
 
-    private Date date;
+    private String date;
     private List<Product> itemsIbBasket;
+    private Double cost;
 
-    public Date getDate() {
+    public Double getCost() {
+        return cost;
+    }
+
+    public void setCost(Double cost) {
+        this.cost = cost;
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

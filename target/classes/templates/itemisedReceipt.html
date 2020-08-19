@@ -3,16 +3,65 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style>
+.date {
+  position: relative;
+  left: 700px;
+}
+
+.basketTotal {
+ padding-left: 80px;
+}
+
+.receipt {
+    position: relative;
+    left: 400px;
+}
+
+table.table {
+  padding-left: 80px;
+}
+</style>
 </head>
 <body>
-<table class="table table-striped">
-    <tr>
-        <th>Total Price</th>
-    </tr>
-    <tr>
-        <td th:text="'£' + ${price}"></td>
-    </tr>
-</table>
+
+        <div class="receipt">
+            <h5>
+                Itemised Receipt
+            </h5>
+        </div>
+
+        <table class="table table-striped">
+            <tr>
+                <th>Items</th>
+            </tr>
+            <tr th:each="item : ${itemsInBasket}">
+                <td th:text=" ${item.name}"></td>
+            </tr>
+        </table>
+
+        <div class="basketTotal">
+            <table>
+                <tr>
+                    <th>Total: </th>
+                </tr>
+                <tr>
+                    <td th:text="'£' + ${price}"></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="date">
+            <table>
+                <tr>
+                    <th>Date: </th>
+                </tr>
+                <tr>
+                    <td th:text=" ${purchaseDateAndTime}"></td>
+                </tr>
+            </table>
+    </div>
+
 
 </body>
 </html>

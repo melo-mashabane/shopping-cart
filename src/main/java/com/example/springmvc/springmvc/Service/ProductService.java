@@ -1,11 +1,14 @@
 package com.example.springmvc.springmvc.Service;
 
 import com.example.springmvc.springmvc.model.Product;
+import com.example.springmvc.springmvc.model.Receipt;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
@@ -78,6 +81,28 @@ public class ProductService {
         }
 
         return round(totalPrice);
+    }
+
+    // Send to FE.
+    public Receipt getReceipt(List<Product> basketItems){
+        Receipt receipt = new Receipt();
+
+        Double basketTotalCost = addTotal(basketItems);
+        String purchaseDateAndTime = getPurchaseDateAndTime();
+
+        receipt.setCost(basketTotalCost);
+        receipt.setDate(purchaseDateAndTime);
+        receipt.setItemsIbBasket(basketItems);
+
+        return receipt;
+    }
+
+    public String getPurchaseDateAndTime() {
+     DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+     Calendar cal = Calendar.getInstance();
+     System.out.println();
+
+        return sdf.format(cal.getTime());
     }
 
     private double round(double value) {
