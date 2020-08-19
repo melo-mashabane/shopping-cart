@@ -16,6 +16,7 @@ public class ProductService {
 
     private static List<Product> products = new ArrayList<>();
 
+    // Data to add products. Using static code block to simulate a database.
     static {
         //Initialize Data
         Product product1 = new Product();
@@ -67,9 +68,9 @@ public class ProductService {
         return null;
     }
 
-
     public Double addTotal(List<Product> allProducts) {
         Double totalPrice = 0.00;
+        boolean applyDiscount = false;
 
         List<Double> totalList = new ArrayList<>();
         for(Product product : allProducts){
@@ -80,7 +81,7 @@ public class ProductService {
             totalPrice += productTotal;
         }
 
-        return round(totalPrice);
+        return roundOff(totalPrice);
     }
 
     // Send to FE.
@@ -105,9 +106,26 @@ public class ProductService {
         return sdf.format(cal.getTime());
     }
 
-    private double round(double value) {
+    private double roundOff(double value) {
         BigDecimal bd = new BigDecimal(Double.toString(value));
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    private double applyDiscount(boolean decision, double basketTotal) {
+        if (decision)
+            return discount(basketTotal);
+        return basketTotal;
+    }
+
+    private double discount(double price) {
+        double  discount,amount,sum;
+
+        // 10% off
+        discount=10;
+        sum=100-discount;
+        amount= (sum*price)/100;
+
+        return amount;
     }
 }
