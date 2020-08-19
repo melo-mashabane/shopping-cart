@@ -52,8 +52,8 @@ public class ProductController {
     @RequestMapping(path = "/products/total", method = RequestMethod.GET)
     public String getTotal(Model model){
         Double basketValue = productService.addTotal(productRepository.findAll());
-        model.addAttribute("name", basketValue);
-        return "result";
+        model.addAttribute("price", basketValue);
+        return "itemisedReceipt";
     }
 
     @RequestMapping(path = "products", method = RequestMethod.POST)

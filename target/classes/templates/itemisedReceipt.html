@@ -5,6 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
+<table class="table table-striped">
+    <tr>
+        <th>Total Price</th>
+    </tr>
+    <tr>
+        <td th:text="'£' + ${price}"></td>
+    </tr>
+</table>
+
 </body>
 </html>

@@ -4,6 +4,8 @@ import com.example.springmvc.springmvc.model.Product;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 @Component
@@ -64,7 +66,6 @@ public class ProductService {
 
 
     public Double addTotal(List<Product> allProducts) {
-
         Double totalPrice = 0.00;
 
         List<Double> totalList = new ArrayList<>();
@@ -76,6 +77,12 @@ public class ProductService {
             totalPrice += productTotal;
         }
 
-        return totalPrice;
+        return round(totalPrice);
+    }
+
+    private double round(double value) {
+        BigDecimal bd = new BigDecimal(Double.toString(value));
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
