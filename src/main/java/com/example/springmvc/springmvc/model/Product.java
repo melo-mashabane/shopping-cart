@@ -8,10 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- * Created by mpumelelomashabane on 13/01/2018.
- */
-
 @Entity
 public class Product implements MyInterface {
 
