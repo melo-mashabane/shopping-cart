@@ -6,10 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by mpumelelomashabane on 13/01/2018.
- */
-
 @Component
 public class DataLoader implements CommandLineRunner {
 
