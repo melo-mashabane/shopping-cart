@@ -1,5 +1,6 @@
 package com.example.springmvc.springmvc.controller;
 
+import com.example.springmvc.springmvc.Service.BasketService;
 import com.example.springmvc.springmvc.Service.ProductService;
 import com.example.springmvc.springmvc.model.Product;
 import com.example.springmvc.springmvc.model.Receipt;
@@ -18,6 +19,7 @@ public class ProductController {
 
     private ProductRepository productRepository;
     private ProductService productService;
+    private BasketService basketService;
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
@@ -27,6 +29,11 @@ public class ProductController {
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
+    }
+
+    @Autowired
+    public void setBasketService(BasketService basketService){
+        this.basketService = basketService;
     }
 
     @RequestMapping(path = "/")
