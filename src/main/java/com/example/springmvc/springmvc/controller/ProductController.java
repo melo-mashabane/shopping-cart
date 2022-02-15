@@ -5,6 +5,8 @@ import com.example.springmvc.springmvc.Service.ProductService;
 import com.example.springmvc.springmvc.model.Product;
 import com.example.springmvc.springmvc.model.Receipt;
 import com.example.springmvc.springmvc.repository.ProductRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class ProductController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(ProductController.class);
 
     private ProductRepository productRepository;
     private ProductService productService;
@@ -49,17 +53,21 @@ public class ProductController {
 
     @RequestMapping(path = "/products/total", method = RequestMethod.GET)
     public String getReceipt(Model model){
+        LOG.info("Processing request for Receipt: {}", model);
+
         Double basketValue = productService.addTotal(productRepository.findAll());
         List<Product> itemsInBasket = productRepository.findAll();
         String purchaseDateAndTime = productService.getPurchaseDateAndTime();
         model.addAttribute("price", basketValue);
         model.addAttribute("itemsInBasket", itemsInBasket);
         model.addAttribute("purchaseDateAndTime", purchaseDateAndTime);
+        LOG.info("Processing request for Receipt: {}", model);
         return "itemisedReceipt";
     }
 
     @RequestMapping(path = "products", method = RequestMethod.POST)
     public String saveProduct(Product product){
+        LOG.info("Saving product : {}", product);
         productRepository.save(product);
         return "redirect:/products/";
     }
@@ -68,6 +76,7 @@ public class ProductController {
     public String getAllProducts(Model model){
         List<Product> allProducts = productRepository.findAll();
         model.addAttribute("products", allProducts);
+        LOG.info("Retrieve all products : {}", model);
         return "products";
     }
 
