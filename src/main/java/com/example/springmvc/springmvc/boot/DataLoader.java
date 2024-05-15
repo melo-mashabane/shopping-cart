@@ -38,11 +38,11 @@ public class DataLoader implements CommandLineRunner {
         productRepository.save(product2);
 
         Product product3 = new Product();
-        product3.setName("Almond Bar");
-        product3.setDescription("Almond Bar with chocolate nad honey");
+        product3.setName("Chocolate Bar");
+        product3.setDescription("Regular chocolate");
         product3.setType("CANDIES");
         product3.setCategory("BARS");
-        product3.setPrice(2.99);
+        product3.setPrice(4.99);
 
         productRepository.save(product3);
     }
